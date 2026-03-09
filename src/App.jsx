@@ -6,7 +6,6 @@ import Contact from "./components/Contact.jsx";
 import Footer from "./components/Fotter.jsx";
 import ProjectDetails from "./components/ProjectDetails.jsx";
 
-
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -56,7 +55,7 @@ function AnimatedRoutes() {
 
 function App() {
   return (
-    <Router>
+    <Router basename="/vishalrajbhar.github.io">
       <AnimatedRoutes />
     </Router>
   );
