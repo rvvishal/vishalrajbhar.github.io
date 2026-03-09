@@ -1,0 +1,771 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vishal Rajbhar – Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0a0a0a;
+  --surface: #141414;
+  --surface2: #1c1c1c;
+  --border: #242424;
+  --text: #f0f0f0;
+  --muted: #666;
+  --accent: #c8f542;
+  --radius: 16px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+/* NAV */
+nav {
+  position: sticky; top: 16px; z-index: 200;
+  max-width: 1000px; margin: 16px auto 0; padding: 0 20px;
+}
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(20,20,20,.92); border: 1px solid var(--border);
+  border-radius: 100px; padding: 8px 10px; backdrop-filter: blur(16px);
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'Syne', sans-serif; font-weight: 700; font-size: 15px;
+  color: var(--text); text-decoration: none; cursor: pointer;
+}
+.nav-avatar {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: linear-gradient(135deg,#444,#1a1a1a);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 800; color: #fff; flex-shrink: 0;
+}
+.nav-links { display: flex; align-items: center; gap: 2px; }
+.nav-links a {
+  color: var(--muted); text-decoration: none;
+  padding: 6px 14px; border-radius: 100px; font-size: 14px;
+  transition: color .2s; cursor: pointer;
+}
+.nav-links a:hover { color: var(--text); }
+.nav-links .sep { color: #2a2a2a; padding: 0 2px; }
+.btn-pill {
+  background: var(--text); color: #000; border: none;
+  padding: 8px 20px; border-radius: 100px;
+  font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 14px;
+  cursor: pointer; text-decoration: none; display: inline-block;
+  transition: background .2s, transform .15s;
+}
+.btn-pill:hover { background: var(--accent); transform: scale(1.03); }
+
+/* MAIN */
+main { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+
+/* WORK SECTION */
+.section-work { padding: 60px 0 40px; }
+.section-work h1 {
+  font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: clamp(32px, 5vw, 52px);
+  margin-bottom: 28px; letter-spacing: -1.5px;
+}
+
+/* TABS */
+.filter-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 40px; }
+.tab {
+  padding: 8px 18px; border-radius: 100px; font-size: 14px; cursor: pointer;
+  border: 1px solid transparent; background: transparent; color: var(--muted);
+  font-family: 'DM Sans', sans-serif; transition: all .2s;
+}
+.tab:hover { color: var(--text); border-color: var(--border); }
+.tab.active { background: var(--text); color: #000; font-weight: 600; border-color: var(--text); }
+
+/* GRID */
+.project-grid {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 16px; margin-bottom: 80px;
+}
+@media(max-width:768px){ .project-grid { grid-template-columns: repeat(2,1fr); } }
+@media(max-width:440px){ .project-grid { grid-template-columns: 1fr; } }
+
+.project-card { cursor: pointer; transition: transform .25s; }
+.project-card:hover { transform: translateY(-5px); }
+.project-card:hover .card-thumb { box-shadow: 0 20px 50px rgba(0,0,0,.6); }
+.project-card:hover .card-arrow { opacity: 1; }
+.card-thumb {
+  width: 100%; aspect-ratio: 1; border-radius: var(--radius);
+  overflow: hidden; position: relative; transition: box-shadow .25s;
+  display: flex; align-items: center; justify-content: center; font-size: 56px;
+}
+.card-arrow {
+  position: absolute; top: 10px; right: 10px;
+  width: 28px; height: 28px; border-radius: 50%;
+  background: rgba(255,255,255,.15); backdrop-filter: blur(4px);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; color: #fff; opacity: 0; transition: opacity .2s;
+}
+.card-info { padding: 10px 2px 0; }
+.card-title {
+  font-family: 'Syne', sans-serif; font-weight: 700; font-size: 15px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.card-title .arr { font-size: 12px; color: var(--muted); }
+.card-cat { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+hr { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+/* ABOUT */
+.section-about { padding: 80px 0; }
+.label {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 2.5px;
+  color: var(--muted); margin-bottom: 16px;
+}
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1.4fr; gap: 64px; align-items: center;
+}
+@media(max-width:640px){ .about-grid { grid-template-columns: 1fr; gap: 32px; } }
+.about-photo {
+  aspect-ratio: 3/4; background: var(--surface2); border-radius: 20px;
+  display: flex; align-items: center; justify-content: center; font-size: 88px;
+}
+.about-content h2 {
+  font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: clamp(26px,4vw,40px); letter-spacing: -1px;
+  margin-bottom: 20px; line-height: 1.1;
+}
+.about-content p { color: #999; margin-bottom: 16px; line-height: 1.85; }
+.stat-row { display: flex; gap: 32px; margin-top: 32px; flex-wrap: wrap; }
+.stat-item .num {
+  font-family: 'Syne', sans-serif; font-size: 34px; font-weight: 800; color: var(--accent);
+}
+.stat-item .lbl { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.skills-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+.skill-chip {
+  background: var(--surface2); border: 1px solid var(--border);
+  padding: 6px 14px; border-radius: 100px; font-size: 13px; color: #bbb;
+}
+
+/* CONTACT */
+.section-contact { padding: 80px 0 100px; }
+.contact-box {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 24px; padding: 60px; text-align: center;
+}
+@media(max-width:600px){ .contact-box { padding: 40px 24px; } }
+.contact-box h2 {
+  font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: clamp(26px,5vw,46px); letter-spacing: -1px;
+  margin-bottom: 12px; line-height: 1.1;
+}
+.contact-box > p { color: var(--muted); max-width: 420px; margin: 0 auto 40px; line-height: 1.75; }
+.contact-form {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 12px; max-width: 560px; margin: 0 auto; text-align: left;
+}
+@media(max-width:480px){ .contact-form { grid-template-columns: 1fr; } }
+.contact-form .full { grid-column: 1 / -1; }
+.contact-form input, .contact-form textarea {
+  width: 100%; background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 12px; padding: 14px 16px; color: var(--text);
+  font-family: 'DM Sans', sans-serif; font-size: 14px; outline: none;
+  transition: border-color .2s; resize: none;
+}
+.contact-form input:focus, .contact-form textarea:focus { border-color: #444; }
+.contact-form input::placeholder, .contact-form textarea::placeholder { color: #444; }
+.contact-form textarea { min-height: 120px; }
+.btn-submit {
+  width: 100%; padding: 14px; background: var(--text); color: #000; border: none;
+  border-radius: 12px; font-family: 'DM Sans', sans-serif; font-weight: 700;
+  font-size: 15px; cursor: pointer; transition: background .2s, transform .15s;
+}
+.btn-submit:hover { background: var(--accent); transform: scale(1.01); }
+.contact-links { display: flex; justify-content: center; gap: 20px; margin-top: 28px; flex-wrap: wrap; }
+.contact-link {
+  color: var(--muted); text-decoration: none; font-size: 13px;
+  display: flex; align-items: center; gap: 6px; transition: color .2s;
+}
+.contact-link:hover { color: var(--text); }
+
+footer { text-align: center; padding: 24px; color: var(--muted); font-size: 13px; border-top: 1px solid #181818; }
+
+/* QUICK MODAL */
+.qmodal-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,.88); z-index: 500;
+  padding: 32px 20px; overflow-y: auto; backdrop-filter: blur(8px);
+}
+.qmodal-overlay.open { display: flex; align-items: flex-start; justify-content: center; }
+.qmodal {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 24px; max-width: 680px; width: 100%;
+  overflow: hidden; position: relative;
+  animation: popIn .32s cubic-bezier(.22,1,.36,1);
+}
+@keyframes popIn {
+  from { opacity:0; transform: translateY(32px) scale(.96); }
+  to   { opacity:1; transform: translateY(0) scale(1); }
+}
+.qmodal-banner {
+  width: 100%; aspect-ratio: 16/9; display: flex;
+  align-items: center; justify-content: center; font-size: 96px;
+}
+.qmodal-body { padding: 28px 32px 32px; }
+@media(max-width:500px){ .qmodal-body { padding: 24px 20px 28px; } }
+.qmodal-tag {
+  display: inline-block; background: var(--surface2); color: var(--muted);
+  font-size: 11px; padding: 4px 12px; border-radius: 100px;
+  letter-spacing: .8px; text-transform: uppercase; margin-bottom: 10px;
+}
+.qmodal-title {
+  font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: 26px; margin-bottom: 12px; letter-spacing: -.5px;
+}
+.qmodal-desc { color: #999; line-height: 1.8; margin-bottom: 24px; }
+.qmodal-meta { display: flex; gap: 24px; margin-bottom: 28px; flex-wrap: wrap; }
+.meta-item label {
+  display: block; font-size: 11px; color: var(--muted);
+  text-transform: uppercase; letter-spacing: .8px; margin-bottom: 4px;
+}
+.meta-item span { font-weight: 600; font-size: 14px; }
+.qmodal-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn-case {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--accent); color: #000; padding: 12px 24px; border-radius: 100px;
+  font-weight: 700; font-size: 14px; text-decoration: none;
+  border: none; cursor: pointer; font-family: 'DM Sans', sans-serif;
+  transition: transform .15s;
+}
+.btn-case:hover { transform: scale(1.03); }
+.btn-ghost {
+  background: var(--surface2); color: var(--text); border: 1px solid var(--border);
+  padding: 12px 20px; border-radius: 100px; font-size: 14px;
+  cursor: pointer; font-family: 'DM Sans', sans-serif;
+  transition: background .2s;
+}
+.btn-ghost:hover { background: #252525; }
+.qmodal-x {
+  position: absolute; top: 14px; right: 14px;
+  width: 34px; height: 34px; border-radius: 50%;
+  background: rgba(0,0,0,.5); backdrop-filter: blur(4px);
+  border: none; color: #fff; font-size: 16px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; transition: background .2s;
+}
+.qmodal-x:hover { background: rgba(255,255,255,.12); }
+
+/* CASE STUDY — slide panel */
+#casePage {
+  position: fixed; inset: 0; z-index: 300;
+  background: var(--bg); overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform .48s cubic-bezier(.22,1,.36,1);
+}
+#casePage.open { transform: translateX(0); }
+
+.case-topbar {
+  position: sticky; top: 0; z-index: 10;
+  background: rgba(10,10,10,.92); backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 40px;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+}
+@media(max-width:600px){ .case-topbar { padding: 12px 20px; } }
+.case-topbar-left { display: flex; align-items: center; gap: 12px; }
+.btn-back {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--surface2); border: 1px solid var(--border);
+  color: var(--text); padding: 8px 16px; border-radius: 100px;
+  font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
+  cursor: pointer; white-space: nowrap; transition: background .2s;
+}
+.btn-back:hover { background: #252525; }
+.case-topbar-title {
+  font-family: 'Syne', sans-serif; font-weight: 700; font-size: 15px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px;
+}
+
+.case-hero {
+  width: 100%; min-height: 340px; aspect-ratio: 21/9;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 120px; position: relative; overflow: hidden;
+}
+.case-hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, transparent 30%, var(--bg) 100%);
+  pointer-events: none;
+}
+
+.case-content { max-width: 800px; margin: 0 auto; padding: 0 40px 100px; }
+@media(max-width:600px){ .case-content { padding: 0 20px 80px; } }
+
+.case-header { padding: 36px 0 48px; }
+.case-tag {
+  display: inline-block; background: var(--surface2); color: var(--muted);
+  font-size: 11px; padding: 5px 14px; border-radius: 100px;
+  text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;
+}
+.case-h1 {
+  font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: clamp(30px,5vw,54px); letter-spacing: -2px;
+  line-height: 1.05; margin-bottom: 24px;
+}
+.case-intro { font-size: 18px; color: #999; line-height: 1.8; margin-bottom: 36px; }
+.case-meta-bar {
+  display: flex; border: 1px solid var(--border); border-radius: 14px; overflow: hidden;
+}
+.case-meta-item {
+  flex: 1; padding: 18px 20px; border-right: 1px solid var(--border);
+}
+.case-meta-item:last-child { border-right: none; }
+.case-meta-item label {
+  display: block; font-size: 11px; color: var(--muted);
+  text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px;
+}
+.case-meta-item span { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 15px; }
+@media(max-width:520px){
+  .case-meta-bar { flex-direction: column; }
+  .case-meta-item { border-right: none; border-bottom: 1px solid var(--border); }
+  .case-meta-item:last-child { border-bottom: none; }
+}
+
+/* Case sections */
+.cs { margin-bottom: 60px; }
+.cs h2 {
+  font-family: 'Syne', sans-serif; font-weight: 700;
+  font-size: 22px; margin-bottom: 16px; letter-spacing: -.5px;
+}
+.cs p { color: #999; line-height: 1.85; margin-bottom: 14px; }
+
+.cs-img {
+  width: 100%; border-radius: 16px; border: 1px solid var(--border);
+  background: var(--surface2); aspect-ratio: 16/9;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 80px; margin: 32px 0; overflow: hidden;
+}
+.cs-img-row {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 32px 0;
+}
+@media(max-width:480px){ .cs-img-row { grid-template-columns: 1fr; } }
+.cs-img-sm {
+  border-radius: 14px; border: 1px solid var(--border);
+  background: var(--surface2); aspect-ratio: 4/3;
+  display: flex; align-items: center; justify-content: center; font-size: 52px;
+}
+
+.cs-callout {
+  background: var(--surface); border: 1px solid var(--border);
+  border-left: 3px solid var(--accent); border-radius: 12px;
+  padding: 24px 28px; margin: 28px 0;
+  font-size: 17px; font-style: italic; color: #ccc; line-height: 1.75;
+}
+
+.cs-steps {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin: 24px 0;
+}
+@media(max-width:520px){ .cs-steps { grid-template-columns: 1fr; } }
+.cs-step {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 14px; padding: 20px;
+}
+.cs-step .sn {
+  font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800;
+  color: var(--accent); margin-bottom: 8px;
+}
+.cs-step h4 { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+.cs-step p { color: var(--muted); font-size: 13px; line-height: 1.6; margin: 0; }
+
+.cs-results { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin: 24px 0; }
+@media(max-width:520px){ .cs-results { grid-template-columns: repeat(2,1fr); } }
+.cs-result {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 14px; padding: 24px 20px; text-align: center;
+}
+.cs-result .big {
+  font-family: 'Syne', sans-serif; font-size: 36px; font-weight: 800;
+  color: var(--accent); display: block; margin-bottom: 4px;
+}
+.cs-result .desc { font-size: 13px; color: var(--muted); }
+
+.cs-cta {
+  display: flex; gap: 20px; align-items: center; flex-wrap: wrap;
+  margin-top: 52px; padding-top: 48px; border-top: 1px solid var(--border);
+}
+.cs-cta-text { flex: 1; min-width: 200px; }
+.cs-cta-text h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 22px; margin-bottom: 6px; }
+.cs-cta-text p { color: var(--muted); font-size: 14px; margin: 0; }
+
+/* Related projects */
+.cs-related { margin-bottom: 80px; }
+.cs-related h2 {
+  font-family: 'Syne', sans-serif; font-weight: 700;
+  font-size: 22px; margin-bottom: 20px; letter-spacing: -.5px;
+}
+.cs-related-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+@media(max-width:520px){ .cs-related-grid { grid-template-columns: 1fr; } }
+.cs-rel-card {
+  cursor: pointer; transition: transform .2s;
+}
+.cs-rel-card:hover { transform: translateY(-4px); }
+.cs-rel-thumb {
+  width: 100%; aspect-ratio: 4/3; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 40px; margin-bottom: 8px;
+}
+.cs-rel-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px; }
+.cs-rel-cat { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+/* TOAST */
+.toast {
+  position: fixed; bottom: 32px; left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: var(--accent); color: #000;
+  padding: 12px 24px; border-radius: 100px;
+  font-weight: 700; font-size: 14px; z-index: 9999;
+  transition: transform .35s cubic-bezier(.22,1,.36,1); pointer-events: none;
+}
+.toast.show { transform: translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" onclick="closeCaseStudy()">
+      <div class="nav-avatar">VR</div>
+      Vishal Rajbhar
+    </a>
+    <div class="nav-links">
+      <a onclick="closeCaseStudy(); setTimeout(()=>document.getElementById('work').scrollIntoView({behavior:'smooth'}),200)">Work</a>
+      <span class="sep">|</span>
+      <a onclick="closeCaseStudy(); setTimeout(()=>document.getElementById('about').scrollIntoView({behavior:'smooth'}),200)">About me</a>
+    </div>
+    <a class="btn-pill" onclick="closeCaseStudy(); setTimeout(()=>document.getElementById('contact').scrollIntoView({behavior:'smooth'}),200)">Get in touch</a>
+  </div>
+</nav>
+
+<!-- HOME -->
+<main>
+  <section class="section-work" id="work">
+    <h1>Select Work</h1>
+    <div class="filter-tabs">
+      <button class="tab active" data-filter="all">All Projects</button>
+      <button class="tab" data-filter="uiux">UI/UX design</button>
+      <button class="tab" data-filter="web">Web Design</button>
+      <button class="tab" data-filter="mobile">Mobile Apps</button>
+      <button class="tab" data-filter="real">Real Estate</button>
+    </div>
+    <div class="project-grid" id="projectGrid"></div>
+  </section>
+
+  <hr>
+
+  <section class="section-about" id="about">
+    <div class="about-grid">
+      <div class="about-photo">🧑‍💻</div>
+      <div class="about-content">
+        <p class="label">About me</p>
+        <h2>Crafting digital experiences that connect</h2>
+        <p>Hi, I'm Vishal Rajbhar — a product designer focused on UI/UX, mobile apps, and web design. I bridge the gap between beautiful aesthetics and meaningful usability.</p>
+        <p>With a strong eye for detail and a passion for clean, functional design, I turn complex problems into elegant digital solutions — from concept to pixel-perfect delivery.</p>
+        <div class="stat-row">
+          <div class="stat-item"><div class="num">4+</div><div class="lbl">Years exp.</div></div>
+          <div class="stat-item"><div class="num">40+</div><div class="lbl">Projects</div></div>
+          <div class="stat-item"><div class="num">20+</div><div class="lbl">Clients</div></div>
+        </div>
+        <div class="skills-list">
+          <span class="skill-chip">UI/UX Design</span>
+          <span class="skill-chip">Figma</span>
+          <span class="skill-chip">Web Design</span>
+          <span class="skill-chip">Mobile Apps</span>
+          <span class="skill-chip">Prototyping</span>
+          <span class="skill-chip">Branding</span>
+          <span class="skill-chip">Real Estate</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <section class="section-contact" id="contact">
+    <div class="contact-box">
+      <p class="label">Get in touch</p>
+      <h2>Let's build something great together</h2>
+      <p>Have a project in mind? I'd love to hear about it. Drop me a message and I'll get back to you within 24 hours.</p>
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <input type="text" placeholder="Your name" required>
+        <input type="email" placeholder="Email address" required>
+        <input type="text" placeholder="Project type" class="full">
+        <textarea placeholder="Tell me about your project..." class="full"></textarea>
+        <button type="submit" class="btn-submit full">Send Message →</button>
+      </form>
+      <div class="contact-links">
+        <a href="#" class="contact-link">✉ vishal@example.com</a>
+        <a href="#" class="contact-link">𝕏 @vishalrajbhar</a>
+        <a href="#" class="contact-link">in LinkedIn</a>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>© 2026 Vishal Rajbhar. Handcrafted with care</footer>
+
+<!-- QUICK MODAL -->
+<div class="qmodal-overlay" id="qmodalOverlay" onclick="overlayClick(event)">
+  <div class="qmodal">
+    <button class="qmodal-x" onclick="closeQModal()">✕</button>
+    <div class="qmodal-banner" id="qBanner"></div>
+    <div class="qmodal-body">
+      <span class="qmodal-tag" id="qTag"></span>
+      <h2 class="qmodal-title" id="qTitle"></h2>
+      <p class="qmodal-desc" id="qDesc"></p>
+      <div class="qmodal-meta" id="qMeta"></div>
+      <div class="qmodal-actions">
+        <button class="btn-case" onclick="openCaseStudy()">View Case Study →</button>
+        <button class="btn-ghost" onclick="closeQModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CASE STUDY PAGE -->
+<div id="casePage">
+  <div class="case-topbar">
+    <div class="case-topbar-left">
+      <button class="btn-back" onclick="closeCaseStudy()">← Back to Work</button> 
+      <span class="case-topbar-title" id="caseNavTitle"></span>
+    </div>
+    <button class="btn-pill" onclick="closeCaseStudy(); setTimeout(()=>document.getElementById('contact').scrollIntoView({behavior:'smooth'}),500)">Hire Me</button>
+  </div>
+
+  <div class="case-hero" id="caseHero">
+    <div class="case-hero-overlay"></div>
+  </div>
+
+  <div class="case-content">
+    <div class="case-header">
+      <span class="case-tag" id="caseTag"></span>
+      <h1 class="case-h1" id="caseTitle"></h1>
+      <p class="case-intro" id="caseIntro"></p>
+      <div class="case-meta-bar" id="caseMeta"></div>
+    </div>
+
+    <div class="cs">
+      <h2>Project Overview</h2>
+      <p id="csOverview1"></p>
+      <p id="csOverview2"></p>
+    </div>
+
+    <div class="cs-img" id="csScreen1"></div>
+
+    <div class="cs">
+      <h2>The Problem</h2>
+      <p id="csProblem"></p>
+      <div class="cs-callout" id="csCallout"></div>
+    </div>
+
+    <div class="cs">
+      <h2>Design Process</h2>
+      <p id="csProcess"></p>
+      <div class="cs-steps" id="csSteps"></div>
+    </div>
+
+    <div class="cs-img-row">
+      <div class="cs-img-sm" id="csScreen2"></div>
+      <div class="cs-img-sm" id="csScreen3"></div>
+    </div>
+
+    <div class="cs">
+      <h2>The Solution</h2>
+      <p id="csSolution"></p>
+    </div>
+
+    <div class="cs">
+      <h2>Results &amp; Impact</h2>
+      <div class="cs-results" id="csResults"></div>
+      <p id="csResultsText" style="margin-top:16px;color:#999;line-height:1.85;"></p>
+    </div>
+
+    <div class="cs-related">
+      <h2>More Projects</h2>
+      <div class="cs-related-grid" id="csRelated"></div>
+    </div>
+
+    <div class="cs-cta">
+      <div class="cs-cta-text">
+        <h3>Interested in working together?</h3>
+        <p>Let's discuss your next project — I'm currently available for freelance work.</p>
+      </div>
+      <button class="btn-case" onclick="closeCaseStudy(); setTimeout(()=>document.getElementById('contact').scrollIntoView({behavior:'smooth'}),500)">Get in touch →</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast">Message sent! I'll be in touch soon 🎉</div>
+
+<script>
+const projects = [
+  { id:1, title:"Leaf & Nature", cat:"Mobile App · UI/UX", filter:"uiux", bg:"#253f21", emoji:"🌿", type:"Mobile App", year:"2025", role:"UI/UX Designer", client:"Botanical Co.", desc:"A nature-focused mobile app connecting users with local botanical environments through AR and minimalist journaling.", intro:"Leaf & Nature is an immersive mobile experience designed to reconnect urban dwellers with the natural world — featuring AR plant ID, care schedules, and a calming journal interface.", overview1:"The project began as a research initiative to understand how city residents interact with green spaces. After 40+ interviews, we identified a gap: people wanted to engage with plants but felt intimidated by complex botany apps.", overview2:"We designed a simplified, emotionally warm interface that guides users from curiosity to confidence, combining AR technology with a mindful daily journaling ritual.", problem:"Existing plant apps were overwhelming for casual users, packed with scientific terminology and cluttered UI. Users abandoned them within the first week.", callout:'"I just wanted to know if this plant was safe for my cat — I didn\'t need a botany degree." — User interview, participant #12', process:"We followed a double-diamond approach: deep discovery, rapid prototyping in Figma, 3 rounds of usability testing, and iterative refinement.", steps:[{n:"01",t:"Research",d:"40+ user interviews, competitive analysis of 12 apps, and field observation sessions."},{n:"02",t:"Ideate",d:"Crazy-8s workshops, journey mapping, and 3 design directions prototyped in low-fi."},{n:"03",t:"Deliver",d:"High-fidelity Figma prototype, component library, and developer handoff documentation."}], solution:"A clean, three-tab app: Identify (AR camera), Care (smart reminders), and Journal (daily reflections). Onboarding reduced to 3 steps with a calm palette that reflects nature.", results:[{big:"92%",desc:"Task completion"},{big:"4.8★",desc:"Usability score"},{big:"3 min",desc:"Onboarding time"}], resultsText:"Post-launch testing showed a 4× increase in week-2 retention. The AR identification feature became the most-used with 78% weekly engagement.", screens:["🌿","🔍","📓"] },
+  { id:2, title:"Studio Desk", cat:"Web Design · UI/UX", filter:"web", bg:"#253f21", emoji:"💻", type:"Web Design", year:"2025", role:"Lead Designer", client:"Studio Desk Inc.", desc:"A premium creative workspace web platform for design teams with dark editorial aesthetics.", intro:"Studio Desk reimagines how creative teams manage projects, assets, and collaboration — all in a beautifully designed web platform built for visual thinkers.", overview1:"Studio Desk had an aging product that no longer reflected their positioning as a premium tool for creative agencies. They needed a complete redesign of the web app and marketing site.", overview2:"The design challenge was balancing information density — project dashboards, asset libraries — with a premium aesthetic that would delight designers.", problem:"The previous dashboard was built without design input — cluttered, inconsistent, and frustrating for creative professionals who expect polish from their tools.", callout:'"If my tool looks bad, how can my clients trust I\'ll make their brand look good?" — Creative director at target agency', process:"Started with a full UX audit of the existing product, then conducted 20 stakeholder interviews. Built a new design system from scratch before touching any screens.", steps:[{n:"01",t:"Audit",d:"Full heuristic evaluation, analytics review, and stakeholder interviews to map pain points."},{n:"02",t:"Design System",d:"Token-based design system with dark/light modes, 180+ components in Figma."},{n:"03",t:"Ship",d:"Phased rollout: marketing site → dashboard → mobile responsive views."}], solution:"A modular card-based dashboard with customizable layouts, unified asset library with drag-and-drop, real-time collaboration indicators, and a refined dark/slate palette.", results:[{big:"68%",desc:"Faster tasks"},{big:"+41%",desc:"Paid conversion"},{big:"5★",desc:"Satisfaction"}], resultsText:"The redesign launched to a 41% uplift in trial-to-paid conversion and significant drop in support tickets related to navigation confusion.", screens:["💻","🗂","📐"] },
+  { id:3, title:"Winteral Web Splash", cat:"Web Design", filter:"web", bg:"#c0c0c0", emoji:"🫙", type:"Web Design", year:"2024", role:"Visual Designer", client:"Winteral", desc:"Branding and splash web design for Winteral, a health supplement brand focused on purity.", intro:"Winteral needed a launch website that communicated clinical precision and natural purity simultaneously — confident minimalism with no noise.", overview1:"Winteral is a new-to-market health supplement brand competing in a crowded space. Their differentiator: pharmaceutical-grade sourcing with transparent ingredient lists.", overview2:"The brief was clear: no clutter, no gimmicks. Just confident, honest design that lets the product speak. We developed a bespoke type system and a restrained visual language.", problem:"Competitor supplement sites were loud, aggressive, and full of red/yellow urgency colors. Winteral wanted to stand apart with calm authority.", callout:'"We\'re not selling hype — we\'re selling trust. It needs to feel like a Swiss pharmaceutical company." — Winteral Founder', process:"Moodboarding, brand workshop, rapid wireframing, and 2 visual direction options before landing on the final refined approach.", steps:[{n:"01",t:"Brand Workshop",d:"Half-day session defining brand personality, tone, and visual references with the founding team."},{n:"02",t:"Direction",d:"Two distinct visual directions: Minimalist Clinical vs. Organic Natural — client chose Minimalist."},{n:"03",t:"Build",d:"Full responsive Figma prototype handed to dev team with animation specs and micro-interaction notes."}], solution:"A one-page splash with a stark white hero, centered floating product shot, precise sans-serif hierarchy, and a single accent tone. Zero stock photography.", results:[{big:"22s",desc:"Avg. hero dwell"},{big:"3.2%",desc:"Email signup rate"},{big:"94%",desc:"Brand alignment"}], resultsText:"The splash page achieved a 3.2% email signup rate against an industry average of 1.1%. 94% of viewers correctly identified the intended brand personality.", screens:["🫙","✦","📦"] },
+  { id:4, title:"Field Notes", cat:"Mobile App · Real Estate", filter:"real", bg:"#2a3a28", emoji:"🏞", type:"Real Estate App", year:"2024", role:"Product Designer", client:"FieldPro", desc:"A tablet-first real estate field data collection app for agricultural land valuation.", intro:"Field Notes is a rugged, offline-capable tablet app built for agricultural land valuers working in remote areas — replacing clipboards and spreadsheets.", overview1:"FieldPro's valuation team was operating with paper forms and offline spreadsheets, losing hours to data entry and suffering from transcription errors.", overview2:"The product needed to work in areas with no signal, handle complex data forms, and integrate with satellite map overlays — all on a ruggedized tablet.", problem:"Paper-based workflows led to lost data, illegible handwriting, and a 2-day delay between fieldwork and report generation.", callout:'"We\'ve had valuations held up because a form got wet in the rain. We needed something that could survive the field." — Operations Lead', process:"Shadowed 6 field valuers across 3 regions. Mapped their exact workflow step by step before drawing a single wireframe. Offline-first architecture drove every design decision.", steps:[{n:"01",t:"Field Research",d:"Accompanied valuers on 3 real jobs to observe the complete valuation workflow end-to-end."},{n:"02",t:"Architecture",d:"Designed offline-first data model with sync queue, conflict resolution, and local storage."},{n:"03",t:"Test & Iterate",d:"Prototype testing on-site in field conditions — bright sunlight, muddy gloves, rough handling."}], solution:"A tablet app with offline map tiles, GPS-stamped photo capture, smart form validation, and one-tap sync when signal is restored. Reports auto-generated from collected data.", results:[{big:"0",desc:"Data loss incidents"},{big:"2hrs",desc:"Saved per job"},{big:"1 day",desc:"Report turnaround"}], resultsText:"Within 3 months of launch, Field Notes eliminated all paper-based workflows. Report turnaround dropped from 2 days to same-day. 4.9★ internal rating.", screens:["🏞","📍","📋"] },
+  { id:5, title:"Plantmi", cat:"Mobile App · UI/UX", filter:"mobile", bg:"#124a42", emoji:"🌱", type:"Mobile App", year:"2025", role:"UI/UX Designer", client:"Plantmi", desc:"Plantmi is a plant care companion app with watering schedules, AI diagnosis, and a curated marketplace.", intro:"Plantmi helps plant parents keep their green friends alive — with smart care reminders, AI-powered health diagnosis, and a curated marketplace in one calming interface.", overview1:"The plant care app market has grown dramatically, but most apps focus on identification only. Plantmi's goal was to be the full lifecycle companion — from purchase to thriving plant.", overview2:"The brand needed to feel warm and approachable while being technically capable. We established a rich teal/mint palette and a friendly, rounded visual language.", problem:"New plant owners don't know what's wrong with their plant, don't know when to water, and can't find consistent care advice. Apps were either too simple or too overwhelming.", callout:'"I killed 3 succulents. I thought succulents were unkillable." — Plantmi user during onboarding research', process:"User research with 35 plant owners ranging from beginners to enthusiasts. Built personas, user journeys, and prioritized features by impact vs. effort.", steps:[{n:"01",t:"Research",d:"35 user interviews, survey of 200+ plant owners, and competitive teardown of 8 apps."},{n:"02",t:"IA & Flow",d:"Information architecture, user flow mapping, and priority matrix for feature backlog."},{n:"03",t:"Visual Design",d:"Full UI kit, micro-interactions, animation specs, and accessibility audit in Figma."}], solution:"A tab-based app: My Garden (care hub), Diagnose (AI camera), Explore (marketplace), and Learn (care guides). Onboarding personalizes by experience level.", results:[{big:"4.7★",desc:"App Store rating"},{big:"+62%",desc:"D30 retention"},{big:"120k",desc:"Month 1 downloads"}], resultsText:"Plantmi launched to 120,000 downloads in the first month with 62% higher 30-day retention than category average.", screens:["🌱","🔬","🛍"] },
+  { id:6, title:"Onidelk Dashboard", cat:"Web Design · UI/UX", filter:"uiux", bg:"#124a42", emoji:"📊", type:"Dashboard", year:"2025", role:"UI Designer", client:"Onidelk", desc:"A SaaS analytics dashboard for Onidelk with custom data visualization and modular card system.", intro:"Onidelk needed a dashboard that surfaces complex analytics without overwhelming operators — a command center that feels calm even under high data load.", overview1:"Onidelk's engineering team had a capable data pipeline but the front-end was raw API output in a basic table view. They hired us to transform it into a product.", overview2:"The challenge: 8 different user roles, 50+ metric types, and a need to work on both desktop monitors and customer-facing iPad kiosks.", problem:"The existing interface was a wall of numbers. Senior operators could parse it, but new hires needed weeks to become proficient. Key insights were buried.", callout:'"We need the dashboard to do what our best analyst did — surface the right information at the right moment." — Onidelk COO', process:"Role-based user research, card sorting exercises to prioritize metrics, and 4 rounds of layout testing with actual operators before any visual work.", steps:[{n:"01",t:"User Roles",d:"Mapped 8 distinct user roles, their goals, and the specific data each needed to see first."},{n:"02",t:"Layout System",d:"Modular grid where each role gets a default layout they can customize."},{n:"03",t:"Data Viz",d:"Custom chart library with 12 chart types, optimized for dark backgrounds and dense data."}], solution:"Role-based dashboard layouts, customizable card grid, 12 custom chart types, and a data alert system that proactively surfaces anomalies with recommended actions.", results:[{big:"80%",desc:"Faster insights"},{big:"−60%",desc:"Escalations"},{big:"2 wks",desc:"Onboarding time"}], resultsText:"The new dashboard reduced analyst escalations by 60%. New hire onboarding time dropped from 6 weeks to 2 weeks.", screens:["📊","📈","⚙️"] },
+  { id:7, title:"Plantmi App", cat:"Mobile App", filter:"mobile", bg:"#124a42", emoji:"📱", type:"Mobile App", year:"2025", role:"Product Designer", client:"Plantmi", desc:"Full mobile app design for Plantmi — home feed, plant detail, AR camera mode, and social sharing.", intro:"A deep-dive into every screen of the Plantmi mobile experience — from the personalized home feed to the AR plant scanner and community sharing features.", overview1:"This phase focused on full-fidelity design of every screen: 80+ unique states, 6 animation specs, and a complete design system.", overview2:"The component library grew to 240 components with auto-layout, covering all edge cases: empty states, error states, loading skeletons, and offline banners.", problem:"Without a comprehensive design system, the development team was inconsistently implementing designs, leading to visual drift across the app.", callout:'"We need every screen to feel like it came from the same designer, even when 5 engineers touch it." — Plantmi Head of Product', process:"Design system first, screens second. Built a token-based system with semantic color roles, spacing scales, and component variants before designing a single screen.", steps:[{n:"01",t:"Design System",d:"240+ components, design tokens, semantic color roles, spacing scale, and typography ramp."},{n:"02",t:"All Screens",d:"80+ screens covering all user journeys, edge cases, empty/error/loading states."},{n:"03",t:"Handoff",d:"Figma dev mode export with annotation layer, motion specs, and QA checklist."}], solution:"A living design system in shared Figma, plus full-fidelity screen designs with dev-ready specs, prototype links, and recorded walkthrough videos.", results:[{big:"240+",desc:"Components"},{big:"80+",desc:"Screens"},{big:"−40%",desc:"QA cycles"}], resultsText:"The design system reduced design-to-dev QA cycles by 40%. Engineers reported the handoff was the clearest they'd ever worked with.", screens:["📱","🎨","✅"] },
+  { id:8, title:"Minimal UI Kit", cat:"UI/UX Design", filter:"uiux", bg:"#2a2a2a", emoji:"🗂", type:"Design System", year:"2024", role:"Design System Lead", client:"Open Source", desc:"A comprehensive UI component library and design system in soft mint — 200+ components.", intro:"A fully open-source UI kit built for rapid prototyping: 200+ components, semantic color tokens, and Figma auto-layout patterns — free for the design community.", overview1:"Frustrated with existing UI kits that were either too opinionated or too sparse, this project set out to build the kit I always wished existed.", overview2:"The kit uses a soft mint/neutral palette designed to be calming yet professional. Every component has 5 states, dark/light variants, and usage notes built into Figma.", problem:"Most free Figma UI kits are abandoned after launch, poorly documented, and built without auto-layout. Designers spend more time fixing the kit than using it.", callout:'"A design system is only as good as its documentation. Without context, components are just shapes." — Design Systems Handbook', process:"Audited 15 existing UI kits to identify common failure patterns. Developed a contribution-friendly file structure and wrote documentation for every component before building it.", steps:[{n:"01",t:"Audit",d:"Reviewed 15 popular Figma UI kits and catalogued their strengths and failure patterns."},{n:"02",t:"Tokens First",d:"Established design tokens — colors, spacing, radius, shadows — before any component work."},{n:"03",t:"Document",d:"Wrote usage guidelines, do/don't examples, and accessibility notes for every component."}], solution:"200+ auto-layout components, semantic color tokens for light/dark mode, usage documentation inline, and a contribution guide for the community.", results:[{big:"200+",desc:"Components"},{big:"4.9★",desc:"Community rating"},{big:"12k+",desc:"Figma duplicates"}], resultsText:"Released on Figma Community, the kit received 12,000+ duplicates in 3 months and was featured in Figma's weekly newsletter.", screens:["🗂","🎨","📐"] }
+];
+
+let currentId = null;
+
+/* GRID */
+function renderProjects(filter) {
+  const list = filter === 'all' ? projects : projects.filter(p => p.filter === filter);
+  document.getElementById('projectGrid').innerHTML = list.map(p => `
+    <div class="project-card" onclick="openQModal(${p.id})">
+      <div class="card-thumb" style="background:${p.bg}">
+        <span>${p.emoji}</span>
+        <div class="card-arrow">↗</div>
+      </div>
+      <div class="card-info">
+        <div class="card-title">${p.title} <span class="arr">↗</span></div>
+        <div class="card-cat">${p.cat}</div>
+      </div>
+    </div>`).join('');
+}
+renderProjects('all');
+
+document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => {
+  document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+  t.classList.add('active');
+  renderProjects(t.dataset.filter);
+}));
+
+/* QUICK MODAL */
+function openQModal(id) {
+  currentId = id;
+  const p = projects.find(x => x.id === id);
+  document.getElementById('qBanner').style.cssText = `background:${p.bg};width:100%;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;font-size:96px;`;
+  document.getElementById('qBanner').textContent = p.emoji;
+  document.getElementById('qTag').textContent = p.type;
+  document.getElementById('qTitle').textContent = p.title;
+  document.getElementById('qDesc').textContent = p.desc;
+  document.getElementById('qMeta').innerHTML = `
+    <div class="meta-item"><label>Year</label><span>${p.year}</span></div>
+    <div class="meta-item"><label>Type</label><span>${p.type}</span></div>
+    <div class="meta-item"><label>Role</label><span>${p.role}</span></div>
+    <div class="meta-item"><label>Client</label><span>${p.client}</span></div>`;
+  document.getElementById('qmodalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeQModal() {
+  document.getElementById('qmodalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function overlayClick(e) {
+  if (e.target === document.getElementById('qmodalOverlay')) closeQModal();
+}
+
+/* CASE STUDY */
+function openCaseStudy() {
+  closeQModal();
+  const p = projects.find(x => x.id === currentId);
+
+  document.getElementById('caseNavTitle').textContent = p.title;
+
+  // Hero
+  const h = document.getElementById('caseHero');
+  h.style.background = p.bg;
+  h.innerHTML = `<span style="font-size:120px;position:relative;z-index:1">${p.emoji}</span><div class="case-hero-overlay"></div>`;
+
+  // Header
+  document.getElementById('caseTag').textContent = `${p.type} · ${p.year}`;
+  document.getElementById('caseTitle').textContent = p.title;
+  document.getElementById('caseIntro').textContent = p.intro;
+  document.getElementById('caseMeta').innerHTML = `
+    <div class="case-meta-item"><label>Client</label><span>${p.client}</span></div>
+    <div class="case-meta-item"><label>Year</label><span>${p.year}</span></div>
+    <div class="case-meta-item"><label>Type</label><span>${p.type}</span></div>
+    <div class="case-meta-item"><label>My Role</label><span>${p.role}</span></div>`;
+
+  // Sections
+  document.getElementById('csOverview1').textContent = p.overview1;
+  document.getElementById('csOverview2').textContent = p.overview2;
+
+  const setScreen = (id, bg, emoji, size='80px') => {
+    const el = document.getElementById(id);
+    el.style.background = bg;
+    el.innerHTML = `<span style="font-size:${size}">${emoji}</span>`;
+  };
+  setScreen('csScreen1', p.bg, p.screens[0], '80px');
+  setScreen('csScreen2', p.bg, p.screens[1], '52px');
+  setScreen('csScreen3', p.bg, p.screens[2], '52px');
+
+  document.getElementById('csProblem').textContent = p.problem;
+  document.getElementById('csCallout').textContent = p.callout;
+  document.getElementById('csProcess').textContent = p.process;
+  document.getElementById('csSteps').innerHTML = p.steps.map(s => `
+    <div class="cs-step">
+      <div class="sn">${s.n}</div>
+      <h4>${s.t}</h4>
+      <p>${s.d}</p>
+    </div>`).join('');
+  document.getElementById('csSolution').textContent = p.solution;
+  document.getElementById('csResults').innerHTML = p.results.map(r => `
+    <div class="cs-result">
+      <span class="big">${r.big}</span>
+      <span class="desc">${r.desc}</span>
+    </div>`).join('');
+  document.getElementById('csResultsText').textContent = p.resultsText;
+
+  // Related
+  const others = projects.filter(x => x.id !== p.id).slice(0,3);
+  document.getElementById('csRelated').innerHTML = others.map(o => `
+    <div class="cs-rel-card" onclick="switchCase(${o.id})">
+      <div class="cs-rel-thumb" style="background:${o.bg}">${o.emoji}</div>
+      <div class="cs-rel-title">${o.title}</div>
+      <div class="cs-rel-cat">${o.cat}</div>
+    </div>`).join('');
+
+  const page = document.getElementById('casePage');
+  page.classList.add('open');
+  page.scrollTop = 0;
+  document.body.style.overflow = 'hidden';
+}
+
+function switchCase(id) {
+  currentId = id;
+  openCaseStudy();
+}
+
+function closeCaseStudy() {
+  document.getElementById('casePage').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    if (document.getElementById('casePage').classList.contains('open')) closeCaseStudy();
+    else closeQModal();
+  }
+});
+
+function handleSubmit(e) {
+  e.preventDefault();
+  const t = document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3500);
+  e.target.reset();
+}
+</script>
+</body>
+</html>
