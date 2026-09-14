@@ -102,7 +102,7 @@ const projects = [
         category: "Web Dashboard",
         image: getImages("exxtra")[0],
         images: getImages("exxtra"),
-        description: "A cryptocurrency dashboard that visualizes market trends, prices, and portfolio performance.",
+        description: "A personal dashboard.",
         year: "2022",
         role: "UI Designer",
         duration: "3 months",
