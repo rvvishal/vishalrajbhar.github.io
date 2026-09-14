@@ -96,8 +96,8 @@ const projects = [
         learned: "Clear search and filtering systems are essential for content-heavy platforms like real estate.",
         tags: ["Real Estate", "Mobile", "UX", "Search Filters"],
     },
+    
     {
-        {
     id: 6,
     title: "Exxtra",
     category: "E-commerce Website",
@@ -113,7 +113,7 @@ const projects = [
     solution: "We created a clean product-focused layout with clear categories, prominent product imagery, intuitive navigation, and a streamlined shopping experience.",
     learned: "I learned how to balance visual aesthetics with usability in e-commerce design. Strong product presentation, clear hierarchy, and simple navigation are essential for a better shopping experience.",
     tags: ["E-commerce", "Fashion", "Clothing", "UI Design", "Figma"],
-},
+    },
     
     {
         id: 7,
